@@ -1,0 +1,141 @@
+.faculty-page {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.faculty-header {
+  margin-bottom: 30px;
+}
+
+.search-bar {
+  margin-top: 15px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.faculty-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.faculty-info {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.faculty-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.faculty-name h3 {
+  margin: 0;
+  color: var(--primary-color);
+}
+
+.department {
+  color: var(--text-muted);
+  margin: 5px 0;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  width: fit-content;
+}
+
+.status.teaching {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.status.available {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.current-status {
+  margin-bottom: 20px;
+}
+
+.current-status p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 5px 0;
+  color: var(--text-color);
+}
+
+.next-class {
+  background: var(--background-color);
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.next-class h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px 0;
+  color: var(--primary-color);
+}
+
+.next-class p {
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+/* Dark Mode */
+.dark-mode .faculty-card {
+  background: var(--primary-dark);
+  color: white;
+}
+
+.dark-mode .faculty-info {
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .faculty-name h3 {
+  color: white;
+}
+
+.dark-mode .department {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dark-mode .next-class {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .next-class h4 {
+  color: white;
+}
+
+.dark-mode .search-bar input {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.2);
+}
