@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "npm run start --prefix timetable"
+    "start": "npm start --prefix timetable"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
