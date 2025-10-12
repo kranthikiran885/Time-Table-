@@ -34,7 +34,7 @@ const Home = () => {
   if (!showContent) {
     return (
       <div className="loading-screen">
-        <img src="/vignan-logo.png" alt="Vignan Logo" className="loading-logo" />
+        <img src={campusImage} alt="Vignan Logo" className="loading-logo" />
         <div className="loading-spinner"></div>
         <p>Loading Timetable Management System...</p>
       </div>
