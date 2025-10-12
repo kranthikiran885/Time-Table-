@@ -231,6 +231,80 @@
   color: var(--text-muted);
 }
 
+.resource-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.resource-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resource-card h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--primary-color);
+}
+
+.resource-card p {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.resource-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resource-details li {
+  position: relative;
+  padding-left: 26px;
+  color: var(--text-muted);
+}
+
+.resource-details li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  line-height: 1;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+  align-items: center;
+}
+
+.contact-label {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.contact-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
 .current-status {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
