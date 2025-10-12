@@ -389,9 +389,31 @@
 /* Dark Mode */
 .dark-mode .quick-link,
 .dark-mode .status-card,
-.dark-mode .announcements {
-  background: var(--primary-dark);
+.dark-mode .announcements,
+.dark-mode .resource-card {
+  background: rgba(255, 255, 255, 0.08);
   color: white;
+}
+
+.dark-mode .highlight-item,
+.dark-mode .campus-visual {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.dark-mode .secondary-cta {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.dark-mode .quick-link-description,
+.dark-mode .resource-card p,
+.dark-mode .resource-details li,
+.dark-mode .contact-label,
+.dark-mode .campus-caption {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.dark-mode .contact-link {
+  color: var(--primary-color);
 }
 
 .dark-mode .status-item,
