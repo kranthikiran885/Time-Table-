@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { auth } from '../lib/firebase';
+import { auth, isFirebaseConfigured } from '../lib/firebase';
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
 
@@ -12,15 +12,30 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    if (!isFirebaseConfigured || !auth) {
+      setLoading(false);
+      return () => {};
+    }
+
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
       setLoading(false);
     });
 
     return unsubscribe;
   }, []);
 
+  const ensureAuthAvailability = () => {
+    if (!isFirebaseConfigured || !auth) {
+      const error = new Error('Authentication is not configured for this environment.');
+      toast.error('Authentication is not available right now.');
+      throw error;
+    }
+  };
+
   const login = async (email, password) => {
+    ensureAuthAvailability();
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success('Successfully logged in!');
@@ -31,6 +46,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
+    ensureAuthAvailability();
+
     try {
       await signOut(auth);
       toast.success('Successfully logged out!');
