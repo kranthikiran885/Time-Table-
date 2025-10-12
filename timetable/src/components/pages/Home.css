@@ -61,10 +61,11 @@
 .current-time {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
   margin-top: 15px;
   font-size: 1.2em;
+  font-weight: 600;
 }
 
 .quick-access {
