@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { FaHome, FaCalendarAlt, FaUserTie, FaDoorOpen, FaGraduationCap, FaSun, FaMoon } from 'react-icons/fa';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -15,22 +15,26 @@ import './App.css';
 // Wrapper component to handle transitions
 const AnimatedRoutes = () => {
   const location = useLocation();
-  
+  const nodeRef = useRef(null);
+
   return (
     <TransitionGroup component={null}>
       <CSSTransition
         key={location.key}
+        nodeRef={nodeRef}
         timeout={300}
         classNames="page"
         unmountOnExit
       >
-        <Routes location={location}>
-          <Route path="/" element={<Home />} />
-          <Route path="/timetable" element={<TimeTable />} />
-          <Route path="/class" element={<ClassView />} />
-          <Route path="/faculty" element={<Faculty />} />
-          <Route path="/rooms" element={<Rooms />} />
-        </Routes>
+        <div ref={nodeRef}>
+          <Routes location={location}>
+            <Route path="/" element={<Home />} />
+            <Route path="/timetable" element={<TimeTable />} />
+            <Route path="/class" element={<ClassView />} />
+            <Route path="/faculty" element={<Faculty />} />
+            <Route path="/rooms" element={<Rooms />} />
+          </Routes>
+        </div>
       </CSSTransition>
     </TransitionGroup>
   );
