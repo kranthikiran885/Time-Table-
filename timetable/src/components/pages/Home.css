@@ -400,6 +400,11 @@
   background: rgba(255, 255, 255, 0.12);
 }
 
+.dark-mode .primary-cta {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--primary-color);
+}
+
 .dark-mode .secondary-cta {
   border-color: rgba(255, 255, 255, 0.6);
 }
