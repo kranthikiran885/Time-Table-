@@ -84,10 +84,31 @@ const ClassView = () => {
     window.print();
   };
 
+  if (!selectedClassData) {
+    return (
+      <div className="class-view empty-state">
+        <h2>No class information available</h2>
+        <p>Please select a valid section to view details.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="class-view">
       <div className="class-header">
         <div className="section-info">
+          <div className="section-selection">
+            <label htmlFor="section-selector">Section</label>
+            <select
+              id="section-selector"
+              value={selectedSection}
+              onChange={(event) => setSelectedSection(event.target.value)}
+            >
+              {availableSections.map((section) => (
+                <option key={section} value={section}>{section}</option>
+              ))}
+            </select>
+          </div>
           <h2><FaGraduationCap /> {selectedSection}</h2>
           <div className="section-meta">
             <span>Semester {selectedClassData.semester}</span>
