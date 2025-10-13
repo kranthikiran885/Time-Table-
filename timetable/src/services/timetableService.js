@@ -9,7 +9,7 @@ import {
   query,
   where
 } from 'firebase/firestore';
-import { db, isFirebaseConfigured } from '../lib/firebase';
+import { db as firestoreDb, isFirebaseConfigured } from '../lib/firebase';
 import { timetableData } from '../data/timetableData';
 
 const getLocalTimetable = (section) => {
