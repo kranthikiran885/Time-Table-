@@ -92,13 +92,13 @@ export const subscribeToTimetable = (section, callback) => {
 };
 
 export const getFacultySchedule = async (facultyId) => {
-  if (!isFirebaseConfigured || !db) {
+  if (!isFirebaseConfigured || !firestoreDb) {
     return getLocalFacultySchedule(facultyId);
   }
 
   try {
     const q = query(
-      collection(db, 'schedules'),
+      collection(firestoreDb, 'schedules'),
       where('facultyId', '==', facultyId)
     );
     const querySnapshot = await getDocs(q);
