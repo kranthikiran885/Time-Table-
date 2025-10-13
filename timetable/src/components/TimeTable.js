@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaSearch, FaDownload, FaPrint } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import { getTimetableData, subscribeToTimetable } from '../services/timetableService';
+import ExcelTimetableExplorer from './ExcelTimetableExplorer';
 import './TimeTable.css';
 
 const TimeTable = () => {
