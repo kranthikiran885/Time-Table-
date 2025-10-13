@@ -230,6 +230,11 @@
   gap: 24px;
 }
 
+.no-schedule {
+  margin: 0;
+  color: var(--text-muted);
+}
+
 .schedule-day h4 {
   margin: 0 0 16px 0;
   color: var(--text-color);
