@@ -224,8 +224,8 @@ const ClassView = () => {
               <div key={day.day} className="schedule-day">
                 <h4>{day.day}</h4>
                 <div className="day-classes">
-                  {day.classes.map((classItem) => (
-                    <div key={idx} className={`class-item ${classItem.type}`}>
+                  {day.classes.map((classItem, classIndex) => (
+                    <div key={`${day.day}-${classIndex}`} className={`class-item ${classItem.type}`}>
                       <div className="class-time">{classItem.time}</div>
                       <div className="class-details">
                         <h5>{classItem.subject}</h5>
