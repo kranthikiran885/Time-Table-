@@ -79,13 +79,13 @@ export const getTimetableData = async (section) => {
 };
 
 export const subscribeToTimetable = (section, callback) => {
-  if (!isFirebaseConfigured || !db) {
+  if (!isFirebaseConfigured || !firestoreDb) {
     const localTimetable = getLocalTimetable(section);
     callback(localTimetable);
     return () => {};
   }
 
-  const docRef = doc(db, 'timetables', section);
+  const docRef = doc(firestoreDb, 'timetables', section);
   return onSnapshot(docRef, (docSnapshot) => {
     callback(docSnapshot.exists() ? docSnapshot.data() : null);
   });
