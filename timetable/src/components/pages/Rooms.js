@@ -1,42 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo, useState } from 'react';
 import { FaDoorOpen, FaUserTie, FaUsers, FaClock, FaCalendarPlus } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import './Rooms.css';
 
-const Rooms = () => {
-  const [rooms, setRooms] = useState([
-    {
-      id: 'A101',
-      type: 'Classroom',
-      capacity: 60,
-      status: 'occupied',
-      currentClass: {
-        subject: 'Computer Networks',
-        faculty: 'Dr. Ramesh Kumar',
-        section: 'CSE-A',
-        endTime: '11:00 AM'
-      }
-    },
-    {
-      id: 'B205',
-      type: 'Classroom',
-      capacity: 60,
-      status: 'available',
-      nextClass: {
-        subject: 'Database Management',
-        faculty: 'Prof. Sita Sharma',
-        section: 'CSE-B',
-        startTime: '2:00 PM'
-      }
-    },
-    {
-      id: 'LAB-1',
-      type: 'Computer Lab',
-      capacity: 40,
-      status: 'maintenance',
-      maintenanceEnd: '3:00 PM'
+const ROOMS_DIRECTORY = [
+  {
+    id: 'A101',
+    type: 'Classroom',
+    capacity: 60,
+    status: 'occupied',
+    currentClass: {
+      subject: 'Computer Networks',
+      faculty: 'Dr. Ramesh Kumar',
+      section: 'CSE-A',
+      endTime: '11:00 AM'
     }
-  ]);
+  },
+  {
+    id: 'B205',
+    type: 'Classroom',
+    capacity: 60,
+    status: 'available',
+    nextClass: {
+      subject: 'Database Management',
+      faculty: 'Prof. Sita Sharma',
+      section: 'CSE-B',
+      startTime: '2:00 PM'
+    }
+  },
+  {
+    id: 'LAB-1',
+    type: 'Computer Lab',
+    capacity: 40,
+    status: 'maintenance',
+    maintenanceEnd: '3:00 PM'
+  }
+];
+
+const Rooms = () => {
+  const rooms = ROOMS_DIRECTORY;
 
   const [bookingForm, setBookingForm] = useState({
     roomId: '',
