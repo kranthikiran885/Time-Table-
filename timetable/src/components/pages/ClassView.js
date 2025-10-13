@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaGraduationCap, FaClock, FaUserTie, FaMapMarkerAlt, FaBook, FaCalendarAlt, FaDownload, FaPrint } from 'react-icons/fa';
-import { format } from 'date-fns';
 import { toast } from 'react-hot-toast';
 import './ClassView.css';
 
 const ClassView = () => {
   const [selectedSection, setSelectedSection] = useState('CSE-A');
   const [viewMode, setViewMode] = useState('weekly');
-  const [currentWeek, setCurrentWeek] = useState(new Date());
-  
+
   // Sample class data - In a real app, this would come from an API
   const classData = {
     'CSE-A': {
