@@ -128,6 +128,7 @@ const TimeTable = () => {
           </div>
         )}
       </div>
+      <ExcelTimetableExplorer />
     </div>
   );
 };
