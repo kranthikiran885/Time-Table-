@@ -18,7 +18,7 @@ let db;
 let auth;
 
 if (isFirebaseConfigured) {
-  app = initializeApp(firebaseConfig);
+  app = firebaseInitializeApp(firebaseConfig);
   db = getFirestore(app);
   auth = getAuth(app);
 }
