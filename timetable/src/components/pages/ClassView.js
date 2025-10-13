@@ -69,7 +69,11 @@ const ClassView = () => {
     // Add other sections similarly
   };
 
-  const selectedClassData = classData[selectedSection];
+  const availableSections = Object.keys(classData);
+  const selectedClassData = classData[selectedSection] || classData[availableSections[0]];
+  const currentDayName = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+  const currentDaySchedule = selectedClassData?.weeklySchedule.find((day) => day.day === currentDayName) || selectedClassData?.weeklySchedule[0];
+  const scheduleToRender = viewMode === 'weekly' ? selectedClassData?.weeklySchedule || [] : currentDaySchedule ? [currentDaySchedule] : [];
 
   const handleExport = (format) => {
     // In a real app, this would generate and download the file
