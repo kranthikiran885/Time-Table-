@@ -318,7 +318,7 @@
 .dark-mode .query-panel,
 .dark-mode .results-panel,
 .dark-mode .empty-state {
-  background: var(--primary-dark);
+  background: rgba(255, 255, 255, 0.08);
   color: white;
 }
 
