@@ -125,12 +125,12 @@ export const updateTimetable = async (section, data) => {
 };
 
 export const getRoomSchedule = async (roomId) => {
-  if (!isFirebaseConfigured || !db) {
+  if (!isFirebaseConfigured || !firestoreDb) {
     return getLocalRoomSchedule(roomId);
   }
 
   try {
-    const docRef = doc(db, 'rooms', roomId);
+    const docRef = doc(firestoreDb, 'rooms', roomId);
     const docSnap = await getDoc(docRef);
     return docSnap.exists() ? docSnap.data() : null;
   } catch (error) {
