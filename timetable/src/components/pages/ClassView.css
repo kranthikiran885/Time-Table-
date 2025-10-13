@@ -376,6 +376,24 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
+.empty-state {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.empty-state h2 {
+  margin-bottom: 12px;
+  color: var(--primary-color);
+}
+
+.empty-state p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .class-content {
