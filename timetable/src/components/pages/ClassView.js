@@ -217,11 +217,14 @@ const ClassView = () => {
           </div>
 
           <div className="schedule-content">
-            {selectedClassData.weeklySchedule.map((day, index) => (
+            {scheduleToRender.length === 0 && (
+              <p className="no-schedule">No schedule available for the selected view.</p>
+            )}
+            {scheduleToRender.map((day) => (
               <div key={day.day} className="schedule-day">
                 <h4>{day.day}</h4>
                 <div className="day-classes">
-                  {day.classes.map((classItem, idx) => (
+                  {day.classes.map((classItem) => (
                     <div key={idx} className={`class-item ${classItem.type}`}>
                       <div className="class-time">{classItem.time}</div>
                       <div className="class-details">
