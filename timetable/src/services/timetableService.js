@@ -64,12 +64,12 @@ const getLocalRoomSchedule = (roomId) => {
 };
 
 export const getTimetableData = async (section) => {
-  if (!isFirebaseConfigured || !db) {
+  if (!isFirebaseConfigured || !firestoreDb) {
     return getLocalTimetable(section);
   }
 
   try {
-    const docRef = doc(db, 'timetables', section);
+    const docRef = doc(firestoreDb, 'timetables', section);
     const docSnap = await getDoc(docRef);
     return docSnap.exists() ? docSnap.data() : null;
   } catch (error) {
