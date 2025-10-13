@@ -110,13 +110,13 @@ export const getFacultySchedule = async (facultyId) => {
 };
 
 export const updateTimetable = async (section, data) => {
-  if (!isFirebaseConfigured || !db) {
+  if (!isFirebaseConfigured || !firestoreDb) {
     console.warn('Attempted to update timetable without Firebase configuration.');
     return;
   }
 
   try {
-    const docRef = doc(db, 'timetables', section);
+    const docRef = doc(firestoreDb, 'timetables', section);
     await setDoc(docRef, data, { merge: true });
   } catch (error) {
     console.error('Error updating timetable:', error);
