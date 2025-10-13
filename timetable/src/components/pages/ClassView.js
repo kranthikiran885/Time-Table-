@@ -247,7 +247,11 @@ const ClassView = () => {
               <div key={announcement.id} className={`announcement-card priority-${announcement.priority}`}>
                 <div className="announcement-header">
                   <h4>{announcement.title}</h4>
-                  <span className="date">{format(new Date(announcement.date), 'MMM dd, yyyy')}</span>
+                  <span className="date">{new Date(announcement.date).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: '2-digit',
+                    year: 'numeric'
+                  })}</span>
                 </div>
                 <p>{announcement.content}</p>
               </div>
