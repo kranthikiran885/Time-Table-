@@ -54,7 +54,7 @@ const Rooms = () => {
 
   const handleBooking = () => {
     const { roomId, purpose, date, startTime, endTime, faculty } = bookingForm;
-    
+
     if (!roomId || !purpose || !date || !startTime || !endTime || !faculty) {
       toast.error('Please fill in all fields');
       return;
@@ -73,13 +73,15 @@ const Rooms = () => {
     });
   };
 
-  const filteredRooms = rooms.filter(room => {
-    if (filterType === 'all') return true;
-    if (filterType === 'available') return room.status === 'available';
-    if (filterType === 'occupied') return room.status === 'occupied';
-    if (filterType === 'maintenance') return room.status === 'maintenance';
-    return true;
-  });
+  const filteredRooms = useMemo(() => {
+    return rooms.filter((room) => {
+      if (filterType === 'all') return true;
+      if (filterType === 'available') return room.status === 'available';
+      if (filterType === 'occupied') return room.status === 'occupied';
+      if (filterType === 'maintenance') return room.status === 'maintenance';
+      return true;
+    });
+  }, [filterType, rooms]);
 
   return (
     <div className="rooms-page">
