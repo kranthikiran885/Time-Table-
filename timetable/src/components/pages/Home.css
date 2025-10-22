@@ -40,6 +40,117 @@
   gap: 40px;
 }
 
+.metric-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.metric-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.metric-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.metric-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-value {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.metric-label {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.application-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.application-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.application-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.application-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--hover-bg);
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.application-title {
+  margin: 0.25rem 0 0 0;
+}
+
+.application-description {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.trust-badges {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.badge-icon {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+}
+
+.badge-title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.badge-text {
+  margin: 4px 0 0 0;
+  color: var(--text-muted);
+}
+
 .welcome-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -413,7 +524,10 @@
 .dark-mode .quick-link,
 .dark-mode .status-card,
 .dark-mode .announcements,
-.dark-mode .resource-card {
+.dark-mode .resource-card,
+.dark-mode .metric-item,
+.dark-mode .application-card,
+.dark-mode .badge {
   background: rgba(255, 255, 255, 0.08);
   color: white;
 }
