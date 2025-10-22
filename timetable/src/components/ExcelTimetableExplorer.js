@@ -6,11 +6,11 @@ import './ExcelTimetableExplorer.css';
 const STORAGE_KEY = 'excelTimetableDataset:v1';
 
 const REQUIRED_FIELDS = {
-  section: ['section', 'section name'],
-  className: ['class', 'class name', 'course', 'batch'],
+  section: ['section', 'section name', 'sec'],
+  className: ['class', 'class name', 'course', 'batch', 'class id'],
   subject: ['subject', 'subject name', 'course title'],
   faculty: ['faculty', 'faculty name', 'teacher', 'lecturer', 'instructor'],
-  room: ['room', 'room number', 'classroom', 'hall'],
+  room: ['room', 'room number', 'classroom', 'hall', 'room no', 'room id'],
   day: ['day', 'weekday', 'day of week'],
   time: ['time', 'time slot', 'slot', 'period', 'timing']
 };
@@ -34,6 +34,30 @@ const detectFieldMapping = (headers) => {
   });
 
   return mapping;
+};
+
+const findHeaderRowIndex = (rows) => {
+  const maxScan = Math.min(rows.length, 20);
+  let bestIndex = 0;
+  let bestScore = -1;
+
+  for (let i = 0; i < maxScan; i++) {
+    const row = rows[i];
+    if (!row || row.length === 0) continue;
+
+    const mapping = detectFieldMapping(row);
+    const score = Object.keys(mapping).length;
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestIndex = i;
+    }
+
+    if (score >= 5) {
+      return i;
+    }
+  }
+  return bestIndex;
 };
 
 const buildRecord = (rowValues, mapping, headerIndexMap) => {
@@ -132,7 +156,9 @@ const ExcelTimetableExplorer = () => {
           return;
         }
 
-        const [headerRow, ...dataRows] = rows;
+        const headerIndex = findHeaderRowIndex(rows);
+        const headerRow = rows[headerIndex];
+        const dataRows = rows.slice(headerIndex + 1);
         const mapping = detectFieldMapping(headerRow);
         const headerIndexMap = headerRow.reduce((acc, header, index) => {
           acc[header] = index;
