@@ -109,6 +109,12 @@ const ExcelTimetableExplorer = () => {
       return;
     }
 
+    if (file.size > 15 * 1024 * 1024) { // 15MB limit
+      toast.error('File too large. Please upload an Excel file under 15MB.');
+      event.target.value = '';
+      return;
+    }
+
     setIsParsing(true);
 
     try {
@@ -191,6 +197,10 @@ const ExcelTimetableExplorer = () => {
       setIssues(collectedIssues);
       setSourceFile(file.name);
       setLastUpdated(new Date().toISOString());
+
+      const accepted = summaries.reduce((acc, s) => acc + s.acceptedRows, 0);
+      const flagged = collectedIssues.length;
+      toast.success(`Imported ${accepted} entries${flagged ? ` • ${flagged} notices` : ''}`);
       setFilters({
         section: '',
         className: '',
@@ -203,6 +213,7 @@ const ExcelTimetableExplorer = () => {
     } catch (error) {
       console.error('Failed to parse Excel timetable', error);
       setIssues([{ type: 'error', sheetName: null, message: 'An unexpected error occurred while parsing the Excel file.' }]);
+      toast.error('Failed to read the Excel file. Please verify the format (.xlsx/.xls).');
     } finally {
       setIsParsing(false);
       event.target.value = '';
