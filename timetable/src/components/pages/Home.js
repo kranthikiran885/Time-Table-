@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaSearch, FaClock, FaBell, FaCalendarAlt, FaChalkboardTeacher, FaDoorOpen, FaBullhorn } from 'react-icons/fa';
+import { FaSearch, FaClock, FaBell, FaCalendarAlt, FaChalkboardTeacher, FaDoorOpen, FaBullhorn, FaUniversity, FaUsers, FaCloudDownloadAlt, FaShieldAlt, FaChartLine } from 'react-icons/fa';
 import campusImage from '../../assets/vignan-logo.png';
 import './Home.css';
 
@@ -107,6 +107,80 @@ const Home = () => {
             <span className="quick-link-title">Class Overview</span>
             <p className="quick-link-description">Review section-wise plans and download consolidated views.</p>
           </Link>
+        </div>
+      </section>
+
+      <section className="metric-strip">
+        <div className="metric-item">
+          <FaUniversity className="metric-icon" />
+          <div className="metric-content">
+            <p className="metric-value">52</p>
+            <p className="metric-label">Departments</p>
+          </div>
+        </div>
+        <div className="metric-item">
+          <FaDoorOpen className="metric-icon" />
+          <div className="metric-content">
+            <p className="metric-value">120</p>
+            <p className="metric-label">Classrooms</p>
+          </div>
+        </div>
+        <div className="metric-item">
+          <FaUsers className="metric-icon" />
+          <div className="metric-content">
+            <p className="metric-value">600+</p>
+            <p className="metric-label">Faculty</p>
+          </div>
+        </div>
+        <div className="metric-item">
+          <FaChartLine className="metric-icon" />
+          <div className="metric-content">
+            <p className="metric-value">Realtime</p>
+            <p className="metric-label">Updates</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="application-showcase">
+        <h2>Applications</h2>
+        <div className="application-grid">
+          <div className="application-card">
+            <div className="application-icon"><FaSearch /></div>
+            <h3 className="application-title">Section Lookup</h3>
+            <p className="application-description">Search any section to view a consolidated daily or weekly plan at a glance.</p>
+          </div>
+          <div className="application-card">
+            <div className="application-icon"><FaDoorOpen /></div>
+            <h3 className="application-title">Room Booking</h3>
+            <p className="application-description">Quickly find available rooms, avoid clashes, and book with a single click.</p>
+          </div>
+          <div className="application-card">
+            <div className="application-icon"><FaChalkboardTeacher /></div>
+            <h3 className="application-title">Faculty Tracking</h3>
+            <p className="application-description">Check teaching loads and free slots to plan substitutions efficiently.</p>
+          </div>
+          <div className="application-card">
+            <div className="application-icon"><FaCloudDownloadAlt /></div>
+            <h3 className="application-title">Export & Share</h3>
+            <p className="application-description">Export timetables to PDF and share across departments instantly.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="trust-badges">
+        <div className="badge">
+          <FaShieldAlt className="badge-icon" />
+          <div>
+            <p className="badge-title">Reliable by design</p>
+            <p className="badge-text">Built with integrity checks and conflict validation.</p>
+          </div>
+        </div>
+        <div className="badge">
+          <FaCloudDownloadAlt className="badge-icon" />
+          <div>
+            <p className="badge-title">Easy distribution</p>
+            <p className="badge-text">One-click exports for committees and class groups.</p>
+          </div>
         </div>
       </section>
 
