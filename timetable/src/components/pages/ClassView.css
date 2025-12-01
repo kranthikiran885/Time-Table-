@@ -16,6 +16,34 @@
   align-items: center;
 }
 
+.section-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.section-selection select {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: white;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.section-selection label {
+  font-weight: 600;
+}
+
 .section-info h2 {
   display: flex;
   align-items: center;
@@ -202,6 +230,11 @@
   gap: 24px;
 }
 
+.no-schedule {
+  margin: 0;
+  color: var(--text-muted);
+}
+
 .schedule-day h4 {
   margin: 0 0 16px 0;
   color: var(--text-color);
@@ -341,6 +374,24 @@
 
 .dark-mode .progress-bar {
   background: rgba(255, 255, 255, 0.2);
+}
+
+.empty-state {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.empty-state h2 {
+  margin-bottom: 12px;
+  color: var(--primary-color);
+}
+
+.empty-state p {
+  margin: 0;
+  color: var(--text-muted);
 }
 
 /* Responsive Design */

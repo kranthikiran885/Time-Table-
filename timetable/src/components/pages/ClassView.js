@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaGraduationCap, FaClock, FaUserTie, FaMapMarkerAlt, FaBook, FaCalendarAlt, FaDownload, FaPrint } from 'react-icons/fa';
-import { format } from 'date-fns';
 import { toast } from 'react-hot-toast';
 import './ClassView.css';
 
 const ClassView = () => {
   const [selectedSection, setSelectedSection] = useState('CSE-A');
   const [viewMode, setViewMode] = useState('weekly');
-  const [currentWeek, setCurrentWeek] = useState(new Date());
-  
+
   // Sample class data - In a real app, this would come from an API
   const classData = {
     'CSE-A': {
@@ -71,7 +69,11 @@ const ClassView = () => {
     // Add other sections similarly
   };
 
-  const selectedClassData = classData[selectedSection];
+  const availableSections = Object.keys(classData);
+  const selectedClassData = classData[selectedSection] || classData[availableSections[0]];
+  const currentDayName = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+  const currentDaySchedule = selectedClassData?.weeklySchedule.find((day) => day.day === currentDayName) || selectedClassData?.weeklySchedule[0];
+  const scheduleToRender = viewMode === 'weekly' ? selectedClassData?.weeklySchedule || [] : currentDaySchedule ? [currentDaySchedule] : [];
 
   const handleExport = (format) => {
     // In a real app, this would generate and download the file
@@ -82,10 +84,31 @@ const ClassView = () => {
     window.print();
   };
 
+  if (!selectedClassData) {
+    return (
+      <div className="class-view empty-state">
+        <h2>No class information available</h2>
+        <p>Please select a valid section to view details.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="class-view">
       <div className="class-header">
         <div className="section-info">
+          <div className="section-selection">
+            <label htmlFor="section-selector">Section</label>
+            <select
+              id="section-selector"
+              value={selectedSection}
+              onChange={(event) => setSelectedSection(event.target.value)}
+            >
+              {availableSections.map((section) => (
+                <option key={section} value={section}>{section}</option>
+              ))}
+            </select>
+          </div>
           <h2><FaGraduationCap /> {selectedSection}</h2>
           <div className="section-meta">
             <span>Semester {selectedClassData.semester}</span>
@@ -194,12 +217,15 @@ const ClassView = () => {
           </div>
 
           <div className="schedule-content">
-            {selectedClassData.weeklySchedule.map((day, index) => (
+            {scheduleToRender.length === 0 && (
+              <p className="no-schedule">No schedule available for the selected view.</p>
+            )}
+            {scheduleToRender.map((day) => (
               <div key={day.day} className="schedule-day">
                 <h4>{day.day}</h4>
                 <div className="day-classes">
-                  {day.classes.map((classItem, idx) => (
-                    <div key={idx} className={`class-item ${classItem.type}`}>
+                  {day.classes.map((classItem, classIndex) => (
+                    <div key={`${day.day}-${classIndex}`} className={`class-item ${classItem.type}`}>
                       <div className="class-time">{classItem.time}</div>
                       <div className="class-details">
                         <h5>{classItem.subject}</h5>
@@ -221,7 +247,11 @@ const ClassView = () => {
               <div key={announcement.id} className={`announcement-card priority-${announcement.priority}`}>
                 <div className="announcement-header">
                   <h4>{announcement.title}</h4>
-                  <span className="date">{format(new Date(announcement.date), 'MMM dd, yyyy')}</span>
+                  <span className="date">{new Date(announcement.date).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: '2-digit',
+                    year: 'numeric'
+                  })}</span>
                 </div>
                 <p>{announcement.content}</p>
               </div>

@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp as firebaseInitializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
@@ -11,6 +11,16 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
-export const auth = getAuth(app);
+const isFirebaseConfigured = Object.values(firebaseConfig).every((value) => Boolean(value));
+
+let app;
+let db;
+let auth;
+
+if (isFirebaseConfigured) {
+  app = firebaseInitializeApp(firebaseConfig);
+  db = getFirestore(app);
+  auth = getAuth(app);
+}
+
+export { app, db, auth, isFirebaseConfigured };
